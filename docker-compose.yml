@@ -1,0 +1,11 @@
+version: '3'
+services:
+  db:
+    image: postgres:11
+    restart: 'no'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=prisma
+    ports:
+      - 5432:5432
