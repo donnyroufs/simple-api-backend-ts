@@ -1,5 +1,5 @@
 import type { MappingProfile } from '@automapper/types'
-import { fromValue, ignore } from '@automapper/core'
+import { ignore, mapFrom } from '@automapper/core'
 import { v4 } from 'uuid'
 
 import { PostDto } from '@post/dtos/PostDto'
@@ -9,8 +9,14 @@ import { UpdatePostDto, CreatePostDto } from '@post/dtos'
 export const postProfile: MappingProfile = (mapper) => {
   mapper
     .createMap(CreatePostDto, PostEntity)
-    .forMember((dest) => dest.id, fromValue(v4()))
-    .forMember((dest) => dest.createdAt, fromValue(new Date()))
+    .forMember(
+      (dest) => dest.id,
+      mapFrom(() => v4())
+    )
+    .forMember(
+      (dest) => dest.createdAt,
+      mapFrom(() => new Date())
+    )
 
   mapper.createMap(PostEntity, PostDto)
 

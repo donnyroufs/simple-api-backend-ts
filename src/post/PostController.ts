@@ -1,5 +1,6 @@
 import { Controller } from '@common/ControllerDecorator'
-import { Body, Delete, Get, Param, Patch, Post } from 'routing-controllers'
+import { Context } from 'koa'
+import { Body, Ctx, Delete, Get, Param, Patch, Post } from 'routing-controllers'
 import { CreatePostDto } from './dtos'
 import { UpdatePostDto } from './dtos/UpdatePostDto'
 import { PostService } from './PostService'
@@ -14,23 +15,43 @@ export class PostController {
   }
 
   @Get('/:id')
-  show(@Param('id') id: string) {
-    return this._postService.findOne(id)
+  async show(@Param('id') id: string, @Ctx() ctx: Context) {
+    const res = await this._postService.findOne(id)
+
+    ctx.status = res.err ? 404 : 200
+
+    return res.val
   }
 
   @Post('/')
-  store(@Body() createPost: CreatePostDto) {
-    return this._postService.create(createPost)
+  async store(@Body() createPost: CreatePostDto, @Ctx() ctx: Context) {
+    const res = await this._postService.create(createPost)
+
+    ctx.status = res.err ? 400 : 201
+
+    return res.val
   }
 
   @Patch('/:id')
-  update(@Body() updatePost: UpdatePostDto, @Param('id') id: string) {
+  async update(
+    @Body() updatePost: UpdatePostDto,
+    @Param('id') id: string,
+    @Ctx() ctx: Context
+  ) {
     updatePost.id = id
-    return this._postService.updateOne(updatePost)
+    const res = await this._postService.updateOne(updatePost)
+
+    ctx.status = res.err ? 400 : 204
+
+    return res.val
   }
 
   @Delete('/:id')
-  destroy(@Param('id') id: string) {
-    return this._postService.deleteOne(id)
+  async destroy(@Param('id') id: string, @Ctx() ctx: Context) {
+    const res = await this._postService.deleteOne(id)
+
+    ctx.status = res.err ? 400 : 204
+
+    return res.val
   }
 }
