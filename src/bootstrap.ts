@@ -1,22 +1,32 @@
 import 'dotenv/config'
 import 'reflect-metadata'
 
-import Container from 'typedi'
+// import Container from 'typedi'
+import { Container } from 'inversify'
 import { createKoaServer, useContainer } from 'routing-controllers'
 
-import { mapper } from '@common/mapper'
+import { mapper } from '@common/Mapper'
 import { PostController } from '@post/PostController'
 import { DbContext } from '@common/DbContext'
 import { postProfile } from '@post/PostProfile'
+import { CommonModule } from '@common/CommonModule'
+import { PostModule } from '@post/PostModule'
 
 export async function bootstrap() {
-  useContainer(Container)
+  const container = new Container({
+    defaultScope: 'Singleton',
+  })
+
+  useContainer(container)
+
+  container.load(CommonModule)
+  container.load(PostModule)
 
   const koa = createKoaServer({
     controllers: [PostController],
   })
 
-  await Container.get(DbContext).connect()
+  await container.get(DbContext).connect()
 
   mapper.addProfile(postProfile)
 

@@ -1,12 +1,12 @@
-import { Service } from 'typedi'
+import { injectable } from 'inversify'
 
 import { ServiceException } from '@common/ServiceException'
-import { mapper } from '@common/mapper'
+import { mapper } from '@common/Mapper'
 import { CreatePostDto, PostDto, UpdatePostDto } from '@post/dtos'
 import { PostEntity } from '@post/PostEntity'
 import { PostRepository } from '@post/PostRepository'
 
-@Service()
+@injectable()
 export class PostService {
   constructor(private readonly _postRepo: PostRepository) {}
 

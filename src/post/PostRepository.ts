@@ -1,11 +1,11 @@
-import { Service } from 'typedi'
+import { injectable } from 'inversify'
 
 import { DbContext } from '@common/DbContext'
 import { IRepository } from '@common/interfaces'
 import { UpdateEntity } from '@common/types/index'
 import { PostEntity } from '@post/PostEntity'
 
-@Service()
+@injectable()
 export class PostRepository implements IRepository<PostEntity> {
   constructor(private readonly _dbContext: DbContext) {}
 

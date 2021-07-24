@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { Service } from 'typedi'
+import { injectable } from 'inversify'
 
-@Service()
+@injectable()
 export class DbContext {
   private readonly _client: PrismaClient
 

@@ -1,7 +1,7 @@
 - [x] Rename files, PascalCase
-- [ ] Inversify Modules
-- [ ] Add Service for mapper and inject where needed
+- [x] Inversify Modules
 - [ ] Cleanup bootstrap, perhaps add Application
+- [ ] Add Service for mapper and inject where needed
 - [ ] Add tests
 - [ ] DTO Mapping improvements (on action)
 - [ ] Remove class transformer maybe?
