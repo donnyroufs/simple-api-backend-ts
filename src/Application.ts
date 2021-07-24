@@ -11,6 +11,8 @@ import { postProfile } from '@post/PostProfile'
 import { PostController } from '@post/PostController'
 import { PostModule } from '@post/PostModule'
 
+console.clear()
+
 export class Application extends AbstractApplication {
   protected configureServices(container: Container): void {
     container.load(CommonModule)

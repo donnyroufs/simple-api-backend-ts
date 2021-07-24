@@ -24,7 +24,8 @@ export class PostController {
   }
 
   @Patch('/:id')
-  update(@Body() updatePost: UpdatePostDto) {
+  update(@Body() updatePost: UpdatePostDto, @Param('id') id: string) {
+    updatePost.id = id
     return this._postService.updateOne(updatePost)
   }
 
