@@ -1,6 +1,3 @@
-import { AutoMap } from '@automapper/classes'
-
-export class BaseEntity {
-  @AutoMap()
-  public id: string
-}
+export type BaseEntity<T = unknown> = {
+  id: string
+} & T
