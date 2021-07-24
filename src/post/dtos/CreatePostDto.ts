@@ -4,7 +4,7 @@ import { IsString } from 'class-validator'
 
 export class CreatePostDto {
   @AutoMap()
-  @Expose() // TODO: Get rid of expose?
+  @Expose()
   @IsString()
   title: string
 }
