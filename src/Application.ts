@@ -1,6 +1,17 @@
 import { Container } from 'inversify'
-import { createKoaServer } from 'routing-controllers'
+import {
+  createKoaServer,
+  getMetadataArgsStorage,
+  RoutingControllersOptions,
+} from 'routing-controllers'
 import { Mapper } from '@automapper/types'
+
+import { routingControllersToSpec } from 'routing-controllers-openapi'
+import { validationMetadatasToSchemas } from 'class-validator-jsonschema'
+
+// @ts-expect-error missing types but we don't really care
+import { defaultMetadataStorage } from 'class-transformer/cjs/storage'
+import { koaSwagger } from 'koa2-swagger-ui'
 
 import { AbstractApplication } from '@common/AbstractApplication'
 import { DbContext } from '@common/DbContext'
@@ -20,9 +31,37 @@ export class Application extends AbstractApplication {
   }
 
   protected async boot(container: Container) {
-    const koa = createKoaServer({
+    const routingControllersOptions: RoutingControllersOptions = {
       controllers: [PostController],
+      routePrefix: '/api',
+    }
+
+    const koa = createKoaServer(routingControllersOptions)
+
+    const schemas = validationMetadatasToSchemas({
+      classTransformerMetadataStorage: defaultMetadataStorage,
+      refPointerPrefix: '#/components/schemas/',
     })
+
+    const storage = getMetadataArgsStorage()
+    const spec = routingControllersToSpec(storage, routingControllersOptions, {
+      components: {
+        schemas,
+      },
+      info: {
+        title: 'PostR',
+        version: '1.0.0',
+      },
+    })
+
+    koa.use(
+      koaSwagger({
+        routePrefix: '/swagger',
+        swaggerOptions: {
+          spec,
+        },
+      })
+    )
 
     const mapper = container.get<Mapper>(DITypes.Mapper)
 
