@@ -1,14 +1,15 @@
 import { Container } from 'inversify'
 import { createKoaServer } from 'routing-controllers'
+import { Mapper } from '@automapper/types'
 
 import { AbstractApplication } from '@common/AbstractApplication'
-import { PostController } from '@post/PostController'
 import { DbContext } from '@common/DbContext'
-import { postProfile } from '@post/PostProfile'
-import { CommonModule } from '@common/CommonModule'
-import { PostModule } from '@post/PostModule'
 import { DITypes } from '@common/types'
-import { Mapper } from '@automapper/types'
+import { CommonModule } from '@common/CommonModule'
+
+import { postProfile } from '@post/PostProfile'
+import { PostController } from '@post/PostController'
+import { PostModule } from '@post/PostModule'
 
 export class Application extends AbstractApplication {
   protected configureServices(container: Container): void {
