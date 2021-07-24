@@ -1,9 +1,9 @@
 import { Service } from 'typedi'
 
-import { DbContext } from '@common/db.context'
-import { IRepository } from '@common/IRepository'
-import { UpdateEntity } from '@common/types'
-import { PostEntity } from '@post/post.entity'
+import { DbContext } from '@common/DbContext'
+import { IRepository } from '@common/interfaces'
+import { UpdateEntity } from '@common/types/index'
+import { PostEntity } from '@post/PostEntity'
 
 @Service()
 export class PostRepository implements IRepository<PostEntity> {

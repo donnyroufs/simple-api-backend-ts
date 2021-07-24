@@ -1,8 +1,8 @@
-import { Controller } from '@common/controller.decorator'
+import { Controller } from '@common/ControllerDecorator'
 import { Body, Delete, Get, Param, Patch, Post } from 'routing-controllers'
 import { CreatePostDto } from './dtos'
-import { UpdatePostDto } from './dtos/update-post.dto'
-import { PostService } from './post.service'
+import { UpdatePostDto } from './dtos/UpdatePostDto'
+import { PostService } from './PostService'
 
 @Controller('/post')
 export class PostController {

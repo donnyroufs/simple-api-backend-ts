@@ -4,10 +4,10 @@ import 'reflect-metadata'
 import Container from 'typedi'
 import { createKoaServer, useContainer } from 'routing-controllers'
 
-import { PostController } from '@post/post.controller'
-import { DbContext } from '@common/db.context'
-import { postProfile } from '@post/post.profile'
 import { mapper } from '@common/mapper'
+import { PostController } from '@post/PostController'
+import { DbContext } from '@common/DbContext'
+import { postProfile } from '@post/PostProfile'
 
 export async function bootstrap() {
   useContainer(Container)
@@ -29,8 +29,3 @@ export async function bootstrap() {
 }
 
 bootstrap()
-
-// Inversify Modules
-// Url param, userId, dto mapping
-// rename files (PascalCase?)
-// cleanup bootstrap, perhaps application time?

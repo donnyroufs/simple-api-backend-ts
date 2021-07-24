@@ -1,10 +1,10 @@
 import { Service } from 'typedi'
 
+import { ServiceException } from '@common/ServiceException'
 import { mapper } from '@common/mapper'
-import { ServiceException } from '@common/service-exception'
 import { CreatePostDto, PostDto, UpdatePostDto } from '@post/dtos'
-import { PostEntity } from '@post/post.entity'
-import { PostRepository } from '@post/post.repository'
+import { PostEntity } from '@post/PostEntity'
+import { PostRepository } from '@post/PostRepository'
 
 @Service()
 export class PostService {

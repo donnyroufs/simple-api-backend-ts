@@ -1,5 +1,5 @@
-import { BaseEntity } from '@common/base.entity'
-import { UpdateEntity } from './types'
+import { BaseEntity } from '@common/BaseEntity'
+import { UpdateEntity } from '@common/types'
 
 export interface IRepository<T extends BaseEntity> {
   find(): Promise<T[]>
