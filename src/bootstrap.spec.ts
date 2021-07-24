@@ -1,4 +1,4 @@
-import { bootstrap } from '@/bootstrap'
+import { bootstrap } from './bootstrap'
 
 describe('bootstrap should', () => {
   it('return an empty object', () => {

@@ -1,9 +1,10 @@
 import { Service } from 'typedi'
-import { DbContext } from './db.contex'
-import { PostEntity } from './post.entity'
+
+import { DbContext, IRepository } from '@common/index'
+import { PostEntity } from '@post/index'
 
 @Service()
-export class PostRepository {
+export class PostRepository implements IRepository<PostEntity> {
   constructor(private readonly _dbContext: DbContext) {}
 
   public async save(entity: PostEntity) {
