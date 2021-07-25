@@ -16,6 +16,9 @@ _You need to have docker & docker-compose installed_
 
 ## Use without Docker
 
+_You need to have a Postgres server up and running_
+_You need to have node installed_
+
 - Clone the repository
 - Run yarn
 - Clone and rename env.example to .env
