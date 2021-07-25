@@ -16,10 +16,17 @@ _You need to have docker & docker-compose installed_
 
 ## Use without Docker
 
-_You need to have a Postgres server up and running_
+_You need to have a Postgres server up and running_  
 _You need to have node installed_
 
 - Clone the repository
 - Run yarn
 - Clone and rename env.example to .env
 - Run yarn dev
+
+# Todos
+
+- [ ] Add Tests
+- [ ] Create a base http controller
+- [ ] Create a custom @Body decorator becuase the library does not work well with interceptors
+- [ ] Implement authentication scheme
