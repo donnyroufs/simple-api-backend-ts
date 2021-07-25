@@ -1,3 +1,4 @@
+import Koa from 'koa'
 import { Container } from 'inversify'
 import { Mapper } from '@automapper/types'
 
@@ -9,7 +10,6 @@ import { postProfile } from '@post/PostProfile'
 import { PostController } from '@post/PostController'
 import { PostModule } from '@post/PostModule'
 import { IApplicationContext } from '@common/interfaces/IApplicationContext'
-import Koa from 'koa'
 
 export class Application extends AbstractApplication {
   constructor() {
