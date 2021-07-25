@@ -1,14 +1,22 @@
 # About
 
-Grabbed a bunch of libraries and created something that looks very similiar to NestJS. With
-the idea of respecting very clear boundaries.
-
-It makes use of the **Result** Pattern for handling errors, has entity rich Repositories, support for open-api(swagger)
-and very clean and simple http-controllers.
+Grabbed a bunch of existing libraries to create a very solid backend with TypeScript, Prisma and Swagger as it's drivers. The
+project aims to have very clean and clear boundaries by using dependency injections, dtos and the Result pattern for handling
+your regular errors.
 
 # How to run the project?
+
+## Use with Docker
 
 _You need to have docker & docker-compose installed_
 
 - Clone the repository
+- Clone and rename env.example to .env
 - Run docker-compose up
+
+## Use without Docker
+
+- Clone the repository
+- Run yarn
+- Clone and rename env.example to .env
+- Run yarn dev
