@@ -65,12 +65,16 @@ export class Application extends AbstractApplication {
 
     const mapper = container.get<Mapper>(DITypes.Mapper)
 
-    await container.get(DbContext).connect()
+    await container
+      .get(DbContext)
+      .connect()
+      .catch((err) => console.error(err))
 
     mapper.addProfile(postProfile)
 
-    koa.listen(5000, () => {
-      console.log('server is running on port 5000')
+    koa.listen(process.env.PORT, () => {
+      console.log(`✅ server is up and running`)
+      console.log(`swagger http://localhost:${process.env.PORT}/swagger`)
     })
 
     super.boot(container)

@@ -4,7 +4,9 @@
   "main": "bootstrap.ts",
   "author": "donnyroufs",
   "scripts": {
+    "predev": "yarn prisma migrate dev",
     "dev": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts",
+    "build": "tsc",
     "test": "NODE_ENV=test jest --collect-coverage",
     "test:watch": "NODE_ENV=test jest --watch",
     "lint": "eslint . --ext .ts",

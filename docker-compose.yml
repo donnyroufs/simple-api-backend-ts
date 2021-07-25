@@ -1,11 +1,34 @@
 version: '3'
+
 services:
+  api:
+    image: postr-api
+    build: .
+    stdin_open: true
+    env_file:
+      - ./.env
+    ports:
+      - '5000:5000'
+    networks:
+      - postr
+    depends_on:
+      - db
+    networks:
+      - postr
+    volumes:
+      - .:/usr/src/app
   db:
     image: postgres:11
     restart: 'no'
+
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=prisma
     ports:
       - 5432:5432
+    networks:
+      - postr
+networks:
+  postr:
+    driver: bridge
