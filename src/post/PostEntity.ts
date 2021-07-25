@@ -1,5 +1,5 @@
 import { AutoMap } from '@automapper/classes'
-import { BaseEntity } from '@common/BaseEntity'
+import { BaseEntity } from '@common/types/BaseEntity'
 import { Post } from '@prisma/client'
 
 export class PostEntity implements BaseEntity<Post> {

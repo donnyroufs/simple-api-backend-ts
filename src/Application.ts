@@ -15,6 +15,7 @@ export class Application extends AbstractApplication {
   constructor() {
     super({
       controllers: [PostController],
+      modules: [CommonModule, PostModule],
       containerOpts: {
         defaultScope: 'Singleton',
       },
@@ -23,9 +24,6 @@ export class Application extends AbstractApplication {
 
   protected configureServices(container: Container, mapper: Mapper): void {
     mapper.addProfile(postProfile)
-
-    container.load(CommonModule)
-    container.load(PostModule)
   }
 
   protected async boot(ctx: IApplicationContext<Koa>) {

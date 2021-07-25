@@ -1,10 +1,6 @@
 import { Mapper } from '@automapper/types'
-import { Container } from 'inversify'
-import {
-  KoaDriver,
-  RoutingControllersOptions,
-  useContainer,
-} from 'routing-controllers'
+import { Container, ContainerModule } from 'inversify'
+import { RoutingControllersOptions, useContainer } from 'routing-controllers'
 import { IAbstractApplicationOptions } from './interfaces'
 import { mapper } from './Mapper'
 import { routingControllersToSpec } from 'routing-controllers-openapi'
@@ -27,7 +23,7 @@ export abstract class AbstractApplication {
     useContainer(container)
 
     this.configureServices(container, mapper)
-    this.preBoot()
+    this.preBoot(options.modules, container)
     this.boot({ container, server: this._server })
   }
 
@@ -45,7 +41,8 @@ export abstract class AbstractApplication {
     })
   }
 
-  private preBoot() {
+  private preBoot(modules: ContainerModule[], container: Container) {
+    this.loadModules(modules, container)
     const routingControllersOptions: RoutingControllersOptions = {
       controllers: [],
       routePrefix: '/api',
@@ -83,5 +80,9 @@ export abstract class AbstractApplication {
         },
       })
     )
+  }
+
+  private loadModules(modules: ContainerModule[], container: Container) {
+    modules.forEach((module) => container.load(module))
   }
 }
